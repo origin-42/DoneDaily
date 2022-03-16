@@ -69,3 +69,27 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+
+[data-currentTime="past"] {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+[data-currentTime="present"] {
+  background-color: rgba(238, 56, 56, 0.5);
+}
+[data-currentTime="future"] {
+  background-color: rgba(66, 231, 66, 0.5);
+}
+
+.eventInput {
+  width: 100%;
+  border: none;
+}
+
+/* Custom CSS */
+i {
+  color: white;
+}
+
+button.btn.btn-primary {
+  width: 100%;
+}
