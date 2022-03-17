@@ -54,7 +54,10 @@ const renderTime = () => {
         // Create variables to render
         let tr = $(`<tr id="${ids}_tr">`);
         let tdRow = $(`<td scope="row">`).text(element);
-        let tdCol = $(`<td colspan="8">`).append(`<input id="${ids}_input" class="eventInput" type="text" placeholder="Derps">`);
+        // Add stored Event for Input
+        let inputItem = $(`<input id="${ids}_input" class="eventInput" type="text" placeholder="Derps">`);
+        inputItem.val(localStorage.getItem(`${ids}_storedEvent`));
+        let tdCol = $(`<td colspan="8">`).append(inputItem);
         let button = $(`<button id="${ids}_button" type="button" class="btn btn-primary .saveBtn"><i class="fa-solid fa-floppy-disk fa-x2"></i></button>`);
 
         // Add tags to page
@@ -64,36 +67,16 @@ const renderTime = () => {
         $("#Timeslots").append(tr);
 
 
-        // Create an even listener for each button
+        // Create a unique event listener for each button
         $(`#${ids}_button`).on('click', function () {
             // Capture input value
             let dataInput = $(`#${ids}_input`);
             // Save input value to localStorage
-            localStorage.setItem(JSON.stringify(`${ids}_storedEvent`), dataInput.val());
+            localStorage.setItem(`${ids}_storedEvent`, dataInput.val());
         })
 
-        
-        
-
-        // Add data to page on load and/or click
-        // tdRow.text(element)
-        // if (localStorage.getItem(JSON.parse(`${element}_event`)).value) {
-        //     tdCol.text(localStorage.getItem(JSON.parse(`${element}_event`)).value);
-        // }
-
-        // Add if to check if time is less than current time (hour), the same as or greater
-        // let currentHour = new Date().getHours();
-        // let 
-        // if (times)
-        // $("#Timeslots").append(tr.text(element))
     });
 }
-
-// Save Event
-
-
-// Render Event
-
 
 // Event listeners 
 calenderDateInput.on('change', renderTime);
