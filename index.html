@@ -32,7 +32,34 @@
       <p id="dateAndTime" class="lead"></p>
     </header>
     <div class="container">
-      <p>Date: <input type="text" id="datepicker"></p>
+      <div class="row">
+        <p class="col">Select a date: <input type="text" id="datepicker"></p>
+        <section class="legend container col">
+          <div class="row legendContainer">
+            <article class="col container">
+              <div class="row align-items-center">
+                <figcaption class="col">Past</figcaption>
+                <div data-currentTime="past" class="colorIndicator col"></div>
+              </div>
+            </article>
+            
+            <article class="col container">
+              <div class="row align-items-center">
+                <figcaption class="col">Present</figcaption>
+                <div data-currentTime="present" class="colorIndicator col"></div>
+              </div>
+            </article>
+            
+            <article class="col container">
+              <div class="row align-items-center">
+                <figcaption class="col">Future</figcaption>
+                <div data-currentTime="future" class="colorIndicator col"></div>
+              </div>
+            </article>
+          </div>
+          
+        </section>
+      </div>
     </div>
     <div class="container">
       <!-- Timeblocks go here -->
@@ -40,18 +67,7 @@
         <thead>
           <tr>
             <th scope="col" class="tableTime">Time</th>
-            <th scope="col">Content</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th colspan="12">Content</th>
             <th scope="col">Save</th>
           </tr>
         </thead>

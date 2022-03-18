@@ -1,7 +1,7 @@
-// Global Variables
+// Global variables
 const calenderDateInput = $( "#datepicker" );
 
-// Get available hours
+// Create array for time to render to page.
 const hoursAvailable = () => {
     const items = [];
     for (let i = 0; i < 24; i++) {
@@ -18,7 +18,7 @@ const hoursAvailable = () => {
     return items;
 }
 
-// Time Interval
+// Set clock on page with date
 let time = $("#dateAndTime");
 time.text(moment().format('dddd MMMM Do YYYY, h:mm:ss a'));
 let theTime = moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -27,8 +27,7 @@ const setTime = () => {
     theTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 }
 
-
-// Pick a Day
+// Pick a calender day to add event too
 $( function() {
     $( "#datepicker" ).datepicker({
       showOtherMonths: true,
@@ -47,9 +46,10 @@ const getDay = () => {
 // Set data to load on call
 const renderTime = () => {
 
+    // Replace current day
     $("#Timeslots").empty();
 
-    // Render Time on Page Load
+    // Get day selected
     let currentDaySellected = getDay();
 
     hoursAvailable().forEach(element => {
@@ -117,23 +117,29 @@ const colorCode = (day) => {
         $(`#${tableTimeHours[i]}`).css({'border-right': '1px solid black'});
         $(`#${tableTimeHours[i]}`).siblings('.saveBtn').css({'border-radius': '0 0 20px 20px'});
         
-
+        // If current iteration is equal on all values
         if (selectedHour === currentHour && selectedDay === currentDay && currentMonth === selectedMonth && currentYear === selectedYear) {
-            
+            // Make red to indicate current hour
             $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'present');
 
+            // If current iteration is less on all values
         } else if (selectedHour < currentHour && selectedDay <= currentDay && currentMonth <= selectedMonth && currentYear <= selectedYear) {
             
+            // Make gray to indicate time lapse
             $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'past');
 
+            // If current iteration is more on all values
         } else if (selectedHour > currentHour && selectedDay >= currentDay && currentMonth >= selectedMonth && currentYear >= selectedYear) {
 
+            // Make green to indicate available time
             $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'future');
 
+            // check to see if day has lapsed
         } else if (selectedDay < currentDay) {
 
             $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'past');
 
+            // Check to see if day is coming
         } else if (selectedDay > currentDay) {
 
             $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'future');
@@ -142,8 +148,6 @@ const colorCode = (day) => {
         
     }
 }
-
-
 
 // Event listeners 
 calenderDateInput.on('change', renderTime);

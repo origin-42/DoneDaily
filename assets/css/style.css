@@ -107,6 +107,16 @@ input {
   background-color: transparent;
 }
 
+.row {
+  white-space: inherit;
+  height: inherit;
+  border-top: 1px solid white;
+}
+
+.colorIndicator {
+  height: 5px;
+  width: 5px;
+}
 
 .eventInput {
   width: 100%;
