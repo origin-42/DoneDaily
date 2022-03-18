@@ -1,4 +1,4 @@
-![snippet](./assets/imagesdoneDailyTitle.jpg)
+![snippet](./assets/images/doneDailyTitle.jpg)
 
 Create, adjust, and plan your day here with this simple daily planner app. 
 
@@ -27,6 +27,6 @@ git pull
 
 ## Extras
 
-[Home Screen](https://origin-42.github.io/quiztimeout/) - QuizTimeout
+[Home Screen](https://origin-42.github.io/quiztimeout/) - DoneDaily
 
 ![snippet](./assets/images/screenshot.jpg)
