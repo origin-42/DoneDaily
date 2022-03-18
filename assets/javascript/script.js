@@ -21,8 +21,10 @@ const hoursAvailable = () => {
 // Time Interval
 let time = $("#dateAndTime");
 time.text(moment().format('dddd MMMM Do YYYY, h:mm:ss a'));
+let theTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 const setTime = () => {
     time.text(moment().format('dddd MMMM Do YYYY, h:mm:ss a'));
+    theTime = moment().format('MMMM Do YYYY, h:mm:ss a');
 }
 
 
@@ -42,10 +44,9 @@ const getDay = () => {
     return daySelected;
 }
 
-// Check the time
-let currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');;
 // Set data to load on call
 const renderTime = () => {
+
     $("#Timeslots").empty();
 
     // Render Time on Page Load
@@ -80,10 +81,9 @@ const renderTime = () => {
         })
 
     });
-
-    // Color code hours
-    colorCode(currentTime);
+    
 }
+
 
 // Change colors depending on current time.
 const colorCode = (day) => {
@@ -143,12 +143,16 @@ const colorCode = (day) => {
     }
 }
 
+
+
 // Event listeners 
 calenderDateInput.on('change', renderTime);
 
 // Function calls
-setInterval(setTime, 1000);
-// change colors every time the hour passes.
+setInterval(function() {
+    setTime();
+    colorCode(theTime);
+}, 1000);
 
 
 
