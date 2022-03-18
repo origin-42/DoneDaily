@@ -27,6 +27,6 @@ git pull
 
 ## Extras
 
-[Home Screen](https://origin-42.github.io/quiztimeout/) - QuizTimeout
+[Home Screen](https://origin-42.github.io/quiztimeout/) - DoneDaily
 
 ![snippet](./assets/images/screenshot.jpg)
