@@ -1,4 +1,4 @@
-![snippet](./assets/imagesdoneDailyTitle.jpg)
+![snippet](./assets/images/doneDailyTitle.jpg)
 
 Create, adjust, and plan your day here with this simple daily planner app. 
 
