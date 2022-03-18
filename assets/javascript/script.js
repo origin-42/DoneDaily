@@ -4,9 +4,13 @@ const calenderDateInput = $( "#datepicker" );
 // Get available hours
 const hoursAvailable = () => {
     const items = [];
-    for (let i = 1; i < 25; i++) {
-        if (i < 13) {
+    for (let i = 0; i < 24; i++) {
+        if (i === 0) {
+            items.push(`12 AM`);
+        } else if (i < 12) {
             items.push(`${i} AM`);
+        } else if (i === 12) {
+            items.push(`12 PM`);
         } else {
             items.push(`${i - 12} PM`);
         }
@@ -55,9 +59,9 @@ const renderTime = () => {
         let tr = $(`<tr id="${ids}_tr">`);
         let tdRow = $(`<td id="${ids}_time" class="tableTime" scope="row">`).text(element);
         // Add stored Event for Input
-        let inputItem = $(`<input id="${ids}_input" class="eventInput" type="text">`);
+        let inputItem = $(`<input id="${ids}_input" class="eventInput form-control" type="text">`);
         inputItem.val(localStorage.getItem(`${ids}_storedEvent`));
-        let tdCol = $(`<td colspan="8">`).append(inputItem);
+        let tdCol = $(`<td colspan="12" class="inputContainer">`).append(inputItem);
         let button = $(`<button id="${ids}_button" type="button" class="btn btn-primary .saveBtn"><i class="fa-solid fa-floppy-disk fa-x2"></i></button>`);
 
         // Add tags to page
@@ -83,6 +87,7 @@ const renderTime = () => {
 
 // Change colors depending on current time.
 const colorCode = (day) => {
+   
     // Grab formatting
     let hour = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`h A`)}`;
 
@@ -92,33 +97,48 @@ const colorCode = (day) => {
     })
     for (let i = 0; i < tableTimeHours.length; i++) {
 
-        // console.log(`${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`HH`)}`)
-        // console.log(`${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`D`)}`)
-        // console.log(`${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`M`)}`)
-        // console.log(`${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`Y`)}`)
-        
         // Change each index to suit day format
         let trim = tableTimeHours[i].replace("_time", "");
-        console.log(moment(trim, 'MMDDYYYYhA').format('HH'))
-        // console.log(moment(trim, 'MMDDYYYYhA').format('D'))
-        // console.log(moment(trim, 'MMDDYYYYhA').format('M'))
-        // console.log(moment(trim, 'MMDDYYYYhA').format('Y'))
-        let hoursFormat = moment(trim, 'MMDDYYYYhA').format(`h A`);
-        if (hoursFormat === hour) {
-            // Change style for background
-        } 
+
         // Format for testing
         let currentHour = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`HH`)}`;
         let currentDay = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`D`)}`;
-        let month = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`M`)}`;
-        let year = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`Y`)}`;
+        let currentMonth = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`M`)}`;
+        let currentYear = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`Y`)}`;
         
         let selectedHour = moment(trim, 'MMDDYYYYhA').format('HH');
         let selectedDay = moment(trim, 'MMDDYYYYhA').format('D');
         let selectedMonth = moment(trim, 'MMDDYYYYhA').format('M');
         let selectedYear = moment(trim, 'MMDDYYYYhA').format('Y');
-
         
+        hour = `${moment(day, "MMMM Do YYYY, h:mm:ss a").format(`HH`)}`;
+        
+        // Set style
+        $(`#${tableTimeHours[i]}`).css({'border-right': '1px solid black'});
+        $(`#${tableTimeHours[i]}`).siblings('.saveBtn').css({'border-radius': '0 0 20px 20px'});
+        
+
+        if (selectedHour === currentHour && selectedDay === currentDay && currentMonth === selectedMonth && currentYear === selectedYear) {
+            
+            $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'present');
+
+        } else if (selectedHour < currentHour && selectedDay <= currentDay && currentMonth <= selectedMonth && currentYear <= selectedYear) {
+            
+            $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'past');
+
+        } else if (selectedHour > currentHour && selectedDay >= currentDay && currentMonth >= selectedMonth && currentYear >= selectedYear) {
+
+            $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'future');
+
+        } else if (selectedDay < currentDay) {
+
+            $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'past');
+
+        } else if (selectedDay > currentDay) {
+
+            $(`#${tableTimeHours[i]}`).siblings('.inputContainer').attr('data-currentTime', 'future');
+
+        }
         
     }
 }

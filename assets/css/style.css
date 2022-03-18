@@ -57,12 +57,32 @@ textarea {
   color: white;
 }
 
+.btn-primary {
+  height: 50px;
+}
 .saveBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+}
+
+.table .tableTime {
+  text-align: center;
+}
+.table .inputContainer {
+  padding: 0;
+}
+.table .eventInput {
+  height: 50px;
+  padding: 5px;
+}
+.form-control {
+  border-radius: 0px;
+  background-color: transparent;
+}
+.btn {
+  border-radius: 0px;
+  border-left: 3px groove black;
 }
 
 .saveBtn i:hover {
@@ -74,11 +94,19 @@ textarea {
   background-color: rgba(128, 128, 128, 0.5);
 }
 [data-currentTime="present"] {
-  background-color: rgba(238, 56, 56, 0.5);
+  background-color: rgba(214, 37, 37, 0.774);
 }
 [data-currentTime="future"] {
   background-color: rgba(66, 231, 66, 0.5);
 }
+
+tr {
+  border-bottom: 3px solid white;
+}
+input {
+  background-color: transparent;
+}
+
 
 .eventInput {
   width: 100%;
